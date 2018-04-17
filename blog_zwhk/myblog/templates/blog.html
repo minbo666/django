@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html id="ie8" lang="zh-CN">
+<![endif]-->
+<!--[if !(IE 8) ]><!-->
+<html lang="zh-CN">
+<!--<![endif]-->
+<head>
+	{% include "common/head_common.html" %}
+</head>
+
+<body class="post-template-default single single-post postid-5 single-format-standard">
+<div id="page" class="hfeed site">
+
+	{% include "common/nav_common.html" %}
+
+<div id="content" class="site-content">
+<div class="container">
+	<div class="row">
+
+	<div id="primary" class="col-md-9 content-area">
+		<main id="main" role="main">
+		<article id="post-5"  class="post-content post-5 post type-post status-publish format-standard hentry category-uncategorized">
+			<header class="entry-header">
+				<span class="screen-reader-text">{{ article.title }}</span>
+				<h1 class="entry-title">{{ article.title }}</h1>
+				<div class="entry-meta">
+					<h5 class="entry-date">
+						<i class="fa fa-calendar-o"></i>
+						<i class="entry-date" pubdate>{{ article.pub_date|date:'Y-m-d' }} </i>
+						<span class="byline">
+							<span class="sep"></span>
+							<i class="fa fa-user"></i>
+							<span class="author vcard">
+								<i class="url fn n" title="View all posts by root" rel="author">{{ article.author }}</i>
+							</span>
+						</span> 
+						<i class="fa fa-comments-o"></i>
+						<span class="screen-reader-text"></span>
+						<i class="comments-link" >{{ article.views }} Read</i>
+					</h5>
+				</div>
+			</header>
+
+			<div class="entry-content">
+				<div class="container-fluid col-md-12 show_blog">
+					{{ article.content|safe }}
+				</div>
+			</div>
+
+			<footer class="entry-footer">
+				<hr>
+				<div class="row">
+				<div class="col-md-6 cattegories">
+				<span class="cat-links">
+				<i class="fa fa-folder-open"></i>
+				<a href="{% url 'category' category_pk %}" rel="category"> {{ article.category }}</a>
+				</span>
+				</div>
+				</div>
+			</footer>
+		</article>
+
+		{% if next_blog or pre_blog %}
+		<div class="post-navigation">
+			<nav class="navigation" role="navigation">
+				<h2 class="screen-reader-text">Post navigation</h2>
+				<div class="nav-links">
+					<div class="row">
+					
+					<div class="col-md-6 prev-post">
+						{% if pre_blog %}
+						<a href="{% url 'article' pre_blog.id %}">
+						<span class="next-prev-text" style="font-size: 0.7em;">
+						<i class="fa fa-angle-left" style="font-size: 1.2em;"></i> PREVIOUS</span>
+						<br>{{ pre_blog.title }}</a>
+						{% endif %}
+					</div>
+
+					<div class="col-md-6 next-post">
+						{% if next_blog %}
+						<a href="{% url 'article' next_blog.id %}">
+						<span class="next-prev-text" style="font-size: 0.7em;"> NEXT
+						<i class="fa fa-angle-right" style="font-size: 1.2em;"></i></span>
+						<br>{{ next_blog.title }}</a>
+						{% endif %}
+					</div>
+
+					</div>
+				</div>
+			</nav>
+		</div>
+		{% endif %}
+	
+
+		{% include "common/comment_common.html" %}
+		
+	</div>
+
+	{% include "common/right_bar.html" %}	
+
+	</div>
+</div>
+</div>
+
+
+{% include "common/foot_common.html" %}
+</body>
+</html>
+
+

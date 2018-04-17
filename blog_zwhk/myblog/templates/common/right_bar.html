@@ -1,0 +1,68 @@
+  <div id="secondary" class="col-md-3 sidebar widget-area" role="complementary">
+      <aside id="search-2" class="widget widget_search">
+        <form role="search" method="get" class="search-form" action="/search/">
+          <label>
+            <span class="screen-reader-text">Search for:</span>
+            <input type="search" class="form-control com_input" placeholder="Search" name="q"/>
+          </label>
+          <button type="submit" class="search-submit"><span class="screen-reader-text">Search</span></button>
+        </form>
+      </aside>
+
+
+      <aside id="recent-posts-2" class="widget widget_recent_entries">
+        <h4 class="widget-title">推荐文章</h4>
+        <ul>
+          {% for article in hot_article_list %}
+          <li><a href="{% url 'article' article.pk %}">{{ article.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </aside>
+
+
+      <!-- <aside id="recent-comments-2" class="widget widget_recent_comments">
+        <h4 class="widget-title">近期评论</h4>
+        <ul id="recentcomments">
+          <li class="recentcomments">
+            <span class="comment-author-link">
+              <a href='https://wordpress.org/' rel='external nofollow' class='url'>一位WordPress评论者</a>
+            </span>发表在《<a href="http://www.zwhk.ink/?p=1#comment-1">世界，您好！</a>》
+          </li>
+        </ul>
+      </aside> -->
+
+
+
+
+      <aside id="archives-2" class="widget widget_archive"><h4 class="widget-title">文章归档</h4>
+        <ul>
+          {% for date in year_mouth_list %}
+            <li><a href="{% url 'archives' date.year date.month %}">{{ date.year }}年{{ date.month }}月</a></li>
+          {% endfor %}
+        </ul>
+      </aside>
+
+
+
+      <aside id="categories-2" class="widget widget_categories"><h4 class="widget-title">分类目录</h4>
+        <ul>
+          {% for category in category_list %}
+            <li><a href="{% url 'category' category.pk %}">{{ category.name }}</a><span class="pull-right right_bar_num">({{ category.article_num }})</span></li>
+          {% endfor %}
+        </ul>
+      </aside>
+
+
+
+      <!-- <aside id="meta-2" class="widget widget_meta"><h4 class="widget-title">功能</h4>  
+        <ul>
+          <li><a href="http://www.zwhk.ink/wp-login.php">登录</a></li>
+          <li><a href="">文章<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+          <li><a href="http://www.zwhk.ink/?feed=comments-rss2">评论<abbr title="Really Simple Syndication">RSS</abbr></a></li>
+          <li><a href="https://cn.wordpress.org/" title="基于WordPress，一个优美、先进的个人信息发布平台。">WordPress.org</a></li>
+        </ul>
+      </aside> -->
+
+
+    </div>
+

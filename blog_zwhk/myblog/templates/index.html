@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html id="ie8" lang="zh-CN">
+<![endif]-->
+<!--[if !(IE 8) ]><!-->
+<html lang="zh-CN">
+<!--<![endif]-->
+<head>
+	{% include "common/head_common.html" %}
+</head>
+
+<body class="home blog">
+<div id="page" class="hfeed site">
+
+	{% include "common/nav_common.html" %}
+
+<div id="content" class="site-content">
+	<div class="container">
+	<div class="row">
+		<div id="primary" class="col-md-9 content-area">
+		<main id="main" class="site-main" role="main">	
+
+		{% for item in article_list %}
+		<article id="post-21"  class="post-content post-21 post type-post status-publish format-standard hentry category-4 tag-5">
+
+		<header class="entry-header">
+		<span class="screen-reader-text">{{item.title}}</span>
+		<h2 class="entry-title">
+			<a href="{% url 'article' item.id %}" rel="bookmark">{{item.title}}</a>
+		</h2>
+		<div class="entry-meta">
+			<h5 class="entry-date">
+				<i class="fa fa-calendar-o"></i>
+				<i class="entry-date" pubdate>{{ item.pub_date|date:'Y-m-d' }} </i>
+				<span class="byline">
+					<span class="sep"></span><i class="fa fa-user"></i>
+					<span class="author vcard">
+					<i class="url fn n" title="View all posts by {{ item.author }}" rel="author">{{ item.author }}</i>
+					</span>
+				</span> 
+				<i class="fa fa-comments-o"></i><span class="screen-reader-text"></span>
+				<i class="comments-link" >{{ item.views }} Read</i>
+			</h5>
+		</div>
+		</header>
+
+		<div class="entry-summary">
+			<p>{{ item.content|removetags:"em a p span div img strong i b br"|slice:':80' }} .....</p>
+			<p class="read-more">
+				<a class="btn btn-default" href="{% url 'article' item.id %}"> Read More<span class="screen-reader-text">  Read More</span>
+				</a>
+			</p>
+		</div>
+
+		<footer class="entry-footer"></footer>
+		</article>
+		{% endfor %}
+
+			{% if page_obj.has_next or page_obj.has_previous %}
+			<nav class="navigation posts-navigation" role="navigation">
+				<h2 class="screen-reader-text">Posts navigation</h2>
+				<div class="nav-links">
+					<div class="row">
+						<div class="col-md-6 next-post">
+						{% if page_obj.has_previous %}
+							<a href="?page={{ page_obj.previous_page_number }}" >
+							<i class="fa fa-angle-double-left">
+							</i> OLDER POST</a>
+						{% endif %}
+						</div>
+						<div class="col-md-6 prev-post">
+						{% if page_obj.has_next %}		
+							<a href="?page={{ page_obj.next_page_number }}" > NEWER POSTS
+							<i class="fa fa-angle-double-right"></i>
+							</a>
+						{% endif %}
+						</div>
+					</div>		
+				</div>
+			</nav>
+			{% endif %}
+
+		</main>
+		</div>
+
+		{% include "common/right_bar.html" %}
+		
+	</div>
+	</div>
+</div>
+
+{% include "common/foot_common.html" %}
+</body>
+</html>

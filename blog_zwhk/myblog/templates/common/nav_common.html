@@ -1,0 +1,35 @@
+<header id="masthead"  role="banner">
+    <nav id="site-navigation" class="main-navigation navbar-fixed-top navbar-left" role="navigation">
+    <div class="container" id="navigation_menu">
+      <div class="navbar-header">
+        <button type="button" class="menu-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span> 
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'index' %}">{{ website_title }}</a>
+      </div>
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul id="menu-top_nav" class="primary-menu">
+        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-menu-home">
+          <a href="{% url 'index' %}">首页</a>
+        </li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom">
+          <a href="{% url 'article' 1 %}">关于</a>
+        </li>
+      </ul>
+      </div>
+    </div>
+    </nav>
+
+    <div id="cc_spacer"></div>
+    <div class="site-header">
+      <div class="site-branding">
+        <a class="home-link" href="{% url 'index' %}" title="{{ website_title }}" rel="home">
+          <h1 class="site-title">{{ website_title }}</h1>
+          <h2 class="site-description">{{ website_desc }}</h2>
+        </a>
+      </div>
+    </div>
+  </header>
