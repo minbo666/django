@@ -1,0 +1,53 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminTLE | 用户管理</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  {% include 'zwhk_admin/include/head_css.html' %}
+  {% block extrastyle %}{% endblock %}
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+  {% include 'zwhk_admin/include/nav.html' %}
+  
+
+  <!-- =============================================== -->
+
+  <!-- Left side column. contains the sidebar -->
+  {% block left_bar %}{% endblock left_bar %}
+  <!-- =============================================== -->
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+    {% block box_header %}{% endblock box_header %}
+
+    <!-- Main content -->
+    {% block box_main %}{% endblock box_main %}
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+    {% include 'zwhk_admin/include/foot.html' %}
+
+  <!-- Control Sidebar -->
+    {% include 'zwhk_admin/include/right_set.html' %}
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+    {% include 'zwhk_admin/include/bottom_js.html' %}
+    {% block bottom_js %}{% endblock bottom_js %}
+</body>
+</html>
+    {% block lay_form %}{% endblock lay_form %}

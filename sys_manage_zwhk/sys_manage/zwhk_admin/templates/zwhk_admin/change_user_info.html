@@ -1,0 +1,101 @@
+{% extends "./zwhk_admin/base.html" %}
+
+{% block left_bar %}
+<aside class="main-sidebar">
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar">
+    <!-- Sidebar user panel -->
+    {% include 'zwhk_admin/include/left_bar_top.html'%}
+    <!-- /.search form -->
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu" data-widget="tree">
+      <li class="header" style="text-align: center;">菜单</li>
+
+      <!-- <li class="treeview">
+        <a href="">
+          <i class="fa fa-dashboard"></i> <span>仪表盘</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="index.html"><i class="fa fa-circle-o text-red"></i> 仪表盘 v1</a></li>
+          <li><a href="index2.html"><i class="fa fa-circle-o text-aqua"></i> 仪表盘 v2</a></li>
+        </ul>
+      </li> -->
+
+      <li class="treeview">
+        <a href="">
+          <i class="fa fa-user"></i>
+          <span>用户与权限</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="{% url 'user_manage' %}"><i class="fa fa-circle-o text-red"></i> 用户管理</a></li>
+          <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> 用户组管理</a></li>
+          <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> 策略管理</a></li>
+        </ul>
+      </li>
+
+      <li class="treeview active">
+        <a>
+          <i class="fa fa-user"></i>
+          <span>用户简介</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="{% url 'user_profile' %}"><i class="fa fa-circle-o text-red"></i> 用户信息</a></li>
+          <li class="active"><a href="{% url 'change_user_info' %}"><i class="fa fa-circle-o text-yellow"></i> 修改信息</a></li>
+        </ul>
+      </li>
+
+    </ul>
+  </section>
+</aside>
+{% endblock left_bar %}
+
+
+{% block box_header %}
+<section class="content-header">
+	<h1>修改信息</h1>
+	<ol class="breadcrumb">
+		<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+		<li class="active">修改信息</li>
+	</ol>
+</section>
+{% endblock box_header %}
+
+{% block box_main %}
+<section class="content">
+  <div class="col-md-6 col-md-offset-3">
+
+    <div class="box box-warning">
+
+      <div class="box-header with-border">
+        <h3 class="box-title">General Elements</h3>
+      </div>
+
+      <div class="box-body">
+        <form role="form">
+          <!-- text input -->
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+            <input type="email" class="form-control" placeholder="Email">
+          </div>
+
+          </br>
+          <!-- textarea -->
+          <div class="form-group">
+            <label>Textarea</label>
+            <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock box_main %}
