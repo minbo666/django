@@ -23,34 +23,33 @@
           <li><a href="index2.html"><i class="fa fa-circle-o text-aqua"></i> 仪表盘 v2</a></li>
         </ul>
       </li> -->
+     <li class="treeview">
+        <a href="#">
+          <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="{% url 'dashboard' %}"><i class="fa fa-circle-o text-yellow"></i> Dashboard v1</a></li>
+          <li><a href=""><i class="fa fa-circle-o text-aqua"></i> Dashboard v2</a></li>
+        </ul>
+      </li>
+
 
       <li class="treeview active">
         <a href="">
           <i class="fa fa-user"></i>
-          <span>用户与权限</span>
+          <span>权限管理</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
         <ul class="treeview-menu">
-          <li class="active"><a href="{% url 'user_manage' %}"><i class="fa fa-circle-o text-red"></i> 用户管理</a></li>
-          <!-- <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> 用户组管理</a></li>
-          <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> 策略管理</a></li> -->
+          <li class="active"><a href="{% url 'user_manage' %}"><i class="fa fa-circle-o text-red"></i> 管理员管理</a></li>
         </ul>
       </li>
 
-      <li class="treeview">
-        <a href="">
-          <i class="fa fa-user"></i>
-          <span>用户简介</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="{% url 'user_profile' %}"><i class="fa fa-circle-o text-red"></i> 用户信息</a></li>
-        </ul>
-      </li>
 
     </ul>
   </section>
@@ -172,54 +171,41 @@
   $("th").addClass("layui-bg-cyan");
 </script>
 
+{% load staticfiles %}
+<script src="{% static 'layer/src/layer.js' %}"></script>
 <script>
-layui.use('layer', function(){
-  var $ = layui.jquery, layer = layui.layer;
-  var active = {
-    user_form_alert: function(title){
-      layer.open({
-        type: 1,skin: 'layui-layer-lan',title: title,content: $('#layer_box'),area: ['800px'],maxmin: true,anim: anim
-        // ,btn: ['确定', '取消']
-        //   ,yes: function(index, layero){alert('yes');}
-        //   ,btn2: function(index, layero){}
-        //   ,cancel: function(){}
-      });
-    },
+var active = {
+  user_form_alert: function(title){
+    var index = layer.open({
+      type: 2,
+      skin: 'layui-layer-lan',
+      title: title,
+      content: '{% url "form" %}',
+      area: ['800px','600px'],
+      maxmin: true,
+      anim: anim,
+      shadeClose: true,
+      shade: false,
+      btn: ['确认', '重置'],
+      yes: function(index, layero){
+          $('#add-form').submit();
+          //layer.close(index);
+      },
+    });
   }
+};
 
-  $('.edit_btn').on('click', function(){
-    var type = $(this).data('type');
-    if(type == "edit_btn"){
-        title = '编辑';
-        anim = 4;
-        $('#username').attr("disabled",true);
-        $('#username').val($(this).parent().prevAll('.td_username').text());
-        $('#nickname').val($(this).parent().prevAll('.td_nickname').text());
-        $('#email').val($(this).parent().prevAll('.td_email').text());
-        $('#address').val($(this).parent().prevAll('.td_address').text());
-        $('#experience').val($(this).parent().prevAll('.td_experience').text());
-    }else if(type == "add_btn"){
-        title = '添加';
-        anim = 6;
-        $('#username').attr("disabled",false);
-        $('#username').val('');
-        $('#username').val('');
-        $('#nickname').val('');
-        $('#email').val('');
-        $('#address').val('');
-        $('#experience').val('');
-    }
-    active["user_form_alert"] ? active["user_form_alert"].call(this,title,anim) : '';
-  });
-
+$('.edit_btn').on('click', function(){
+  var type = $(this).data('type');
+  if(type == "edit_btn"){
+      title = '编辑';
+      anim = 4;
+  }else if(type == "add_btn"){
+      title = '添加';
+      anim = 6;
+  }
+  active["user_form_alert"] ? active["user_form_alert"].call(this,title,anim) : '';
 });
+
 </script>
 {% endblock bottom_js%}
-
-{% block lay_form %}
-{% load staticfiles %}
-
-<div class="layui-row" id="layer_box" style="display: none;">
-    <iframe scrolling="auto" allowtransparency="true" id="layui-layer-iframe1" name="layui-layer-iframe1" onload="this.className='';" class="" src="{% url 'form' %}" style="height: 507px;" frameborder="0"></iframe>
-</div>
-{% endblock lay_form %}
