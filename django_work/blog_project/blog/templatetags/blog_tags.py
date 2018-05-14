@@ -37,6 +37,16 @@ def datetimeformat(data):
     except:
         return ""
 
+@register.filter(is_safe=True)
+@register.simple_tag
+def choose(content):
+    try:
+        if (content % 2) == 0:
+            return True
+        else:
+            return False
+    except:
+        return
 
 @register.filter(is_safe=True)
 @stringfilter

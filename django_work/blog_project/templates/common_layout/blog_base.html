@@ -14,6 +14,7 @@
 	{% block header %}{% endblock header %}
 	{% compress css %}
 		<link rel='stylesheet' href="{% static 'blog/css/bootstrap.min.css' %}" type='text/css' media='all'/>
+		<link rel='stylesheet' href="{% static 'blog/css/header.css' %}" type='text/css' media='all' /> 
 		<link rel="stylesheet" href="{% static 'blog/css/nprogress.css' %}">
 		<link rel='stylesheet' href="{% static 'blog/css/font-awesome.min.css' %}" type='text/css' media='all'/>
 		<link rel='stylesheet' href="{% static 'blog/css/style.css' %}" type='text/css' media='all' />
@@ -52,8 +53,8 @@
 </html>
 <footer>
 	{% compress js %}
-		<script src="{% static 'blog/js/jquery.min.js' %}"></script>
-		<script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'blog/js/jquery.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'blog/js/bootstrap.min.js' %}"></script>
 		<script type="text/javascript" src="{% static 'blog/js/nprogress.js' %}"></script>
 		<script type="text/javascript" src="{% static 'blog/js/theia-sticky-sidebar.js' %}"></script>
 		<script type="text/javascript" src="{% static 'blog/js/test.js' %}"></script>

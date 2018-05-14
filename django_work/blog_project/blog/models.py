@@ -78,6 +78,13 @@ class Article(BaseModel):
             'day': self.created_time.day
         })
 
+    def get_record_url(self):
+        return reverse('blog:record', kwargs={
+            'year': self.created_time.year,
+            'month': self.created_time.month,
+            'day': self.created_time.day
+        })
+
     @cache_decorator(60 * 60 * 10)
     def get_category_tree(self):
         tree = self.category.get_category_tree()

@@ -170,7 +170,6 @@ class AuthorDetailView(ArticleListView):
 
 
 class TagListView(ListView):
-    template_name = ''
     context_object_name = 'tag_list'
 
     def get_queryset(self):
@@ -206,19 +205,50 @@ class TagDetailView(ArticleListView):
         kwargs['tag_name'] = tag_name
         return super(TagDetailView, self).get_context_data(**kwargs)
 
+class RecordView(ArticleListView):
+    page_type = '年月日分类'
+    
+    def get_queryset_data(self, **kwargs):
+        year = int(self.kwargs['year'])
+        month = int(self.kwargs['month'])
+        day = self.kwargs['day']
+        article_list = Article.objects.filter(type='a', status='p',
+        created_time__year=year, created_time__month=month, created_time__day=day).order_by('-pk')
+        return article_list
+
+    def get_queryset_cache_key(self):
+        year = self.kwargs['year']
+        month = self.kwargs['month']
+        day = self.kwargs['day']
+        cache_key = 'record-{year}-{month}-{day}'.format(year=year, month=month, day=day)
+        return cache_key
+
+    def get_context_data(self, **kwargs):
+        year = self.kwargs['year']
+        month = self.kwargs['month']
+        day = self.kwargs['day']
+        kwargs['page_type'] = RecordView.page_type
+        kwargs['tag_name'] = '{year}年{month}月{day}日'.format(year=year, month=month, day=day)
+        return super(RecordView, self).get_context_data(**kwargs)
+
 
 class ArchivesView(ArticleListView):
     page_type = '文章归档'
     paginate_by = None
     page_kwarg = None
-    template_name = 'blog/article_archives.html'
+    template_name = 'blog/archives.html'
 
     def get_queryset_data(self):
-        return Article.objects.filter(status='p').all()
+        return Article.objects.filter(status='p').all().order_by('-pub_time')
 
     def get_queryset_cache_key(self):
         cache_key = 'archives'
         return cache_key
+
+    def get_context_data(self, **kwargs):
+        kwargs['page_type'] = ArchivesView.page_type
+        kwargs['tag_name'] = ArchivesView.page_type
+        return super(ArchivesView, self).get_context_data(**kwargs)
 
 
 @csrf_exempt

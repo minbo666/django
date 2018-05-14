@@ -142,7 +142,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 # 用户模型设置
 AUTH_USER_MODEL = 'accounts.BlogUser'

@@ -1,0 +1,84 @@
+{% load blog_tags %}
+{% load static %}
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html id="ie8" lang="zh-CN">
+<![endif]-->
+<!--[if !(IE 8) ]><!-->
+<html lang="zh-CN">
+<!--<![endif]-->
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>文章归档 | {{ SITE_DESCRIPTION }}</title>
+    <link  rel="stylesheet" type="text/css" href="{% static 'blog/css/timeline.css' %}"/>
+    <script type="text/javascript" src="{% static 'blog/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'blog/js/modernizr.js' %}"></script>
+
+</head>
+
+<body>
+
+<header>
+    <h1>文章按日期时间分类</h1>
+</header>
+
+    <div class="" style="padding-top: 2em;"></div>
+
+    {% regroup article_list by pub_time.year as year_post_group %}
+    {% for year in year_post_group %}
+    
+        {% regroup year.list by pub_time.month as month_post_group %}
+        {% for month in month_post_group %}
+        <div class="" style="color: black;text-align: center;"><h2>{{ year.grouper }} 年{{ month.grouper }} 月</h2></div>
+        <section id="cd-timeline" class="cd-container">
+            {% for article in month.list %}
+                {% if article.pk|choose %}
+                   <div class="cd-timeline-block">
+                      <div class="cd-timeline-img cd-picture"></div>
+
+                      <div class="cd-timeline-content">
+                        <h2>{{ article.title }}</h2>
+                        <p>{{ article.body|truncate }}</p>
+                        <a href="{{ article.get_absolute_url }}" class="cd-read-more">阅读更多</a>
+                        <span class="cd-date">{{ article.pub_time }}</span>
+                      </div>
+                    </div>
+                {% else %}
+                    <div class="cd-timeline-block">
+                      <div class="cd-timeline-img cd-movie"></div>
+
+                      <div class="cd-timeline-content">
+                        <h2>{{ article.title }}</h2>
+                        <p>{{ article.body|truncate }}</p>
+                        <a href="{{ article.get_absolute_url }}" class="cd-read-more">阅读更多</a>
+                        <span class="cd-date">{{ article.pub_time }}</span>
+                      </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </section> 
+        {% endfor %}
+    {% endfor %}
+
+</body>
+</html>
+
+<script>
+    $(function(){
+      var $timeline_block = $('.cd-timeline-block');
+      $timeline_block.each(function(){
+        if($(this).offset().top > $(window).scrollTop()+$(window).height()*0.75) {
+          $(this).find('.cd-timeline-img, .cd-timeline-content').addClass('is-hidden');
+        }
+      });
+
+      $(window).on('scroll', function(){
+        $timeline_block.each(function(){
+          if( $(this).offset().top <= $(window).scrollTop()+$(window).height()*0.75 && $(this).find('.cd-timeline-img').hasClass('is-hidden') ) {
+            $(this).find('.cd-timeline-img, .cd-timeline-content').removeClass('is-hidden').addClass('bounce-in');
+          }
+        });
+      });
+    });
+</script>
