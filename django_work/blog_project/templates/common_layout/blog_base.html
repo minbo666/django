@@ -14,12 +14,12 @@
 	{% block header %}{% endblock header %}
 	{% compress css %}
 		<link rel='stylesheet' href="{% static 'blog/css/bootstrap.min.css' %}" type='text/css' media='all'/>
-		<link rel='stylesheet' href="{% static 'blog/css/header.css' %}" type='text/css' media='all' /> 
-		<link rel="stylesheet" href="{% static 'blog/css/nprogress.css' %}">
 		<link rel='stylesheet' href="{% static 'blog/css/font-awesome.min.css' %}" type='text/css' media='all'/>
-		<link rel='stylesheet' href="{% static 'blog/css/style.css' %}" type='text/css' media='all' />
-		<link rel='stylesheet' href="{% static 'blog/css/header.css' %}" type='text/css' media='all' />	
-	{% block extra_style %}{% endblock extra_style %}
+		<link rel='stylesheet' href="{% static 'blog/css/nisarg.css' %}" type='text/css' media='all' />
+		<link rel='stylesheet' href="{% static 'blog/css/myblog.css' %}" type='text/css' media='all' />
+		<link rel="stylesheet" href="{% static 'blog/css/nprogress.css' %}">
+
+		{% block extra_style %}{% endblock extra_style %}
 	
 	{% endcompress %}
 	
@@ -55,23 +55,44 @@
 	{% compress js %}
 		<script type="text/javascript" src="{% static 'blog/js/jquery.min.js' %}"></script>
 		<script type="text/javascript" src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+
+		<!--导航条-->
+		<script type='text/javascript' src="{% static 'blog/js/navigation.js' %}"></script>
+		<script type='text/javascript' src="{% static 'blog/js/skip-link-focus-fix.js' %}"></script>
+
+		<!--进度条-->
 		<script type="text/javascript" src="{% static 'blog/js/nprogress.js' %}"></script>
+
+		<!--sidebar-->
 		<script type="text/javascript" src="{% static 'blog/js/theia-sticky-sidebar.js' %}"></script>
 		<script type="text/javascript" src="{% static 'blog/js/test.js' %}"></script>
-	    <script type='text/javascript' src="{% static 'blog/js/navigation.js' %}"></script>
-		<script type='text/javascript' src="{% static 'blog/js/skip-link-focus-fix.js' %}"></script>
-		<script type='text/javascript'>
-		var screenReaderText = {"expand":"expand child menu","collapse":"collapse child menu"};
-		$(document).ready(function() {
-		$('.Content, .rightSidebar')
-			.theiaStickySidebar({
-				additionalMarginTop: 30
-			});
-		});
-		</script>
+
+		<!--nisarg-->
 		<script type='text/javascript' src="{% static 'blog/js/nisarg.js' %}"></script>
-		<script type="application/javascript" src="{% static 'blog/js/blog.js' %}" ></script>
-	    {% block compress_js %}{% endblock %}
+	    {% block compress_js %}
+	    <script type="text/javascript">
+	    	$(document).ready(function() {
+			$('.Content, .rightSidebar')
+			    .theiaStickySidebar({
+			        additionalMarginTop: 30
+			    });
+			});
+
+			function do_reply(parentid) {
+			    $("#id_parent_comment_id").val(parentid)
+			    $("#commentform").appendTo($("#div-comment-" + parentid));
+			    $("#reply-title").hide();
+			    $("#cancel_comment").show();
+			    $("#cancel-comment-reply-link").show();
+			}
+
+			function cancel_reply() {
+			    $("#reply-title").show();
+			    $("#cancel_comment").hide();
+			    $("#id_parent_comment_id").val('')
+			    $("#commentform").appendTo($("#respond"));
+			}
+	    </script>
+	    {% endblock %}
 	{% endcompress %}
-	{% block bottom_js %}{% endblock bottom_js %}
 </footer>

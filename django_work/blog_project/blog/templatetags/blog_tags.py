@@ -1,18 +1,17 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-
+import hashlib
+import urllib
+import random
 from django import template
 from django.conf import settings
 from django.template.defaultfilters import stringfilter
 from django.utils.safestring import mark_safe
-import random
 from django.urls import reverse
 from blog.models import Article, Category, Tag, Links, SideBar
 from django.utils.encoding import force_text
 from django.shortcuts import get_object_or_404
-import hashlib
-import urllib
 from comments.models import Comment
 from zwhk_blog.utils import cache_decorator, logger
 from django.contrib.auth import get_user_model
@@ -36,6 +35,23 @@ def datetimeformat(data):
         return data.strftime(settings.DATE_TIME_FORMAT)
     except:
         return ""
+
+@register.filter(is_safe=True)
+@register.simple_tag
+def localdatetimeformat(content):
+    try:
+        return content.strftime(settings.LOCAL_DATE_TIME_FORMAT)
+    except:
+        return ""
+
+@register.filter(is_safe=True)
+@register.simple_tag
+def random_color(content):
+    try:
+        color = random.choice(settings.BOOTSTRAP_COLOR)
+        return color
+    except:
+        return
 
 @register.filter(is_safe=True)
 @register.simple_tag

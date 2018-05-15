@@ -58,25 +58,25 @@ Modules - reusable parts of our design
 Main components 
 
 -------------------------------- */
-header {
-  height: 200px;
-  line-height: 200px;
+#myheader {
   text-align: center;
   background: #303e49;
+  padding:2em 0 2em 0;
 }
-header h1 {
+#myheader h1 {
   color: #ffffff;
-  font-size: 18px;
-  font-size: 1.125rem;
+  font-size: 2em;
 }
 @media only screen and (min-width: 1170px) {
-  header {
-    height: 200px;
-    line-height: 200px;
+  #myheader {
+    text-align: center;
+    background: #303e49;
+    padding:3.5em 0 3.5em 0;
   }
-  header h1 {
+  #myheader h1 {
+    color: #ffffff;
     font-size: 24px;
-    font-size: 1.5rem;
+    font-size: 2.5em;
   }
 }
 
@@ -143,16 +143,7 @@ header h1 {
   border-radius: 50%;
   box-shadow: 0 0 0 4px #ffffff, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
 }
-.cd-timeline-img img {
-  display: block;
-  width: 24px;
-  height: 24px;
-  position: relative;
-  left: 50%;
-  top: 50%;
-  margin-left: -12px;
-  margin-top: -12px;
-}
+
 .cd-timeline-img.cd-picture {
   background: #75ce66;
 }
@@ -249,11 +240,14 @@ header h1 {
 }
 .cd-timeline-content h2 {
   color: #303e49;
+  font-size: 14px;
+  font-size: 1.75rem;
 }
 .cd-timeline-content p, .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
-  font-size: 13px;
-  font-size: 0.8125rem;
+  font-size: 14px;
+  font-size: 1.5rem;
 }
+
 .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
   display: inline-block;
 }
@@ -289,18 +283,19 @@ header h1 {
 @media only screen and (min-width: 768px) {
   .cd-timeline-content h2 {
     font-size: 20px;
-    font-size: 1.25rem;
+    font-size: 1.75rem;
   }
   .cd-timeline-content p {
     font-size: 16px;
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
   .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
     font-size: 14px;
-    font-size: 0.875rem;
+    font-size: 1.2rem;
   }
 }
 @media only screen and (min-width: 1170px) {
+
   .cd-timeline-content {
     margin-left: 0;
     padding: 1.6em;
@@ -315,17 +310,25 @@ header h1 {
   .cd-timeline-content .cd-read-more {
     float: left;
   }
+
+  .cd-timeline-content h2 {
+    font-size: 20px;
+    font-size: 1.75rem;
+  }
+  
   .cd-timeline-content .cd-date {
     position: absolute;
     width: 100%;
     left: 122%;
     top: 6px;
     font-size: 16px;
-    font-size: 1rem;
+    font-size: 2rem;
   }
+
   .cd-timeline-block:nth-child(even) .cd-timeline-content {
     float: right;
   }
+
   .cd-timeline-block:nth-child(even) .cd-timeline-content::before {
     top: 24px;
     left: auto;
@@ -349,6 +352,11 @@ header h1 {
     -webkit-animation: cd-bounce-2 0.6s;
     -moz-animation: cd-bounce-2 0.6s;
     animation: cd-bounce-2 0.6s;
+  }
+
+  .cd-timeline-content p, .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
+    font-size: 14px;
+    font-size: 1.4rem;
   }
 }
 

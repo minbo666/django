@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-import os
+import os, random
 import datetime
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView

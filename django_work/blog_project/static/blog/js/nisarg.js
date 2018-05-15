@@ -2,6 +2,8 @@
  * Functions to add dropdown caret at the end of navigation menu item with children
  * and code to remove white between navigation menu and header image.
  */
+var screenReaderText = {"expand":"expand child menu","collapse":"collapse child menu"};
+
 
 (function($){
     /**
@@ -59,3 +61,54 @@
 	});
 })(jQuery);
 
+
+NProgress.start();
+NProgress.set(0.4);
+//Increment
+var interval = setInterval(function () {
+    NProgress.inc();
+}, 1000);
+$(document).ready(function () {
+    NProgress.done();
+    clearInterval(interval);
+});
+
+
+/** 侧边栏回到顶部 */
+var rocket = $('#rocket');
+
+$(window).on('scroll', debounce(slideTopSet, 300));
+
+function debounce(func, wait) {
+    var timeout;
+    return function() {
+        clearTimeout(timeout);
+        timeout = setTimeout(func, wait);
+    };
+};
+function slideTopSet() {
+    var top = $(document).scrollTop();
+
+    if (top > 200) {
+        rocket.addClass('show');
+    } else {
+        rocket.removeClass('show');
+    }
+}
+$(document).on('click', '#rocket', function(event) {
+    rocket.addClass('move');
+    $('body, html').animate({
+        scrollTop: 0
+    }, 800);
+});
+$(document).on('animationEnd', function() {
+    setTimeout(function() {
+        rocket.removeClass('move');
+    }, 400);
+
+});
+$(document).on('webkitAnimationEnd', function() {
+    setTimeout(function() {
+        rocket.removeClass('move');
+    }, 400);
+});

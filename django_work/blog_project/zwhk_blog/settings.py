@@ -150,7 +150,7 @@ LOGIN_URL = '/login/'
 # 时间格式设置
 TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 DATE_TIME_FORMAT = '%Y-%m-%d'
-
+LOCAL_DATE_TIME_FORMAT = '%b %d'
 # 分页
 PAGINATE_BY = 10
 # http缓存时间
@@ -192,6 +192,16 @@ SUIT_CONFIG = {
     'ADMIN_NAME': '后台管理系统',
     'LIST_PER_PAGE': 20,
 }
+
+#前端样式
+BOOTSTRAP_COLOR_TYPES = [
+    'default', 'primary', 'success', 'info', 'warning', 'danger'
+]
+
+BOOTSTRAP_COLOR = [
+    '#009688', '#5FB878', '#393D49', '#2F4056'
+    '#1E9FFF', '#FFB800', '#FF5722', '#01AAED'
+]
 
 # 静态文件目录设置
 SITE_ROOT = os.path.dirname(os.path.abspath(__file__))

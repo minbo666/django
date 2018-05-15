@@ -22,9 +22,7 @@
                 {% include 'common_layout/nav_node.html' %}
         {% endfor %}
 
-        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-menu-home menu-item-{{ node.pk }} {% if tag_name == '文章归档' %}current_page_item{% endif %}">
-            <a href="{% url 'blog:archives' %}">文章归档</a>
-        </li>
+        
         {% if nav_pages %}
             {% for node in nav_pages %}
                 <li id="menu-item-{{ node.pk }}" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-{{ node.pk }} {% if article.title == node.title %}current_page_item{% endif %}">
@@ -32,6 +30,10 @@
                 </li>
             {% endfor %}
         {% endif %}
+
+        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-menu-home menu-item-{{ node.pk }} {% if tag_name == '文章归档' %}current_page_item{% endif %}">
+            <a href="{% url 'blog:archives' %}">文章归档</a>
+        </li>
       </ul>
       </div>
     </div>
