@@ -37,6 +37,7 @@ urlpatterns = [
     #Search
     url(r'^search', include('haystack.urls'), name='search'),
     #RSS
-    url(r'^feed/$', DjangoBlogFeed()),
+    url(r'^feed/$', DjangoBlogFeed(), name='feed'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

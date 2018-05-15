@@ -103,4 +103,4 @@ class SideBarAdmin(admin.ModelAdmin):
 
 
 class BlogSettingsAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('sitename', 'site_description', 'sidebar_article_count', 'sidebar_comment_count', 'beiancode')

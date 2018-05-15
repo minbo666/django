@@ -18,7 +18,9 @@ class OnlineMiddleware(object):
         http_user_agent = request.META.get('HTTP_USER_AGENT', [])
         if 'Spider' in http_user_agent or 'spider' in http_user_agent:
             return response
-
         cast_time = time.time() - start_time
-        response.content = response.content.replace(b'<!!LOAD_TIMES!!>', str.encode(str(cast_time)[:5]))
-        return response
+        try:
+            response.content = response.content.replace(b'<!!LOAD_TIMES!!>', str.encode(str(cast_time)[:5]))
+            return response
+        except:
+            return response

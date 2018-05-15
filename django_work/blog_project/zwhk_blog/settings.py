@@ -238,40 +238,21 @@ COMPRESS_JS_FILTERS = [
 #simditor 配置
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_cdn')
+
 SIMDITOR_UPLOAD_PATH = 'uploads/'
 SIMDITOR_IMAGE_BACKEND = 'pillow'
 
 SIMDITOR_TOOLBAR = [
-    'title', 
-    'bold', 
-    'italic', 
-    'underline', 
-    'strikethrough', 
-    'fontScale',
-    'color', 
-    '|', 
-    'ol', 
-    'ul', 
-    'blockquote', 
-    'code', 
-    'table', 
-    '|', 
-    'link',
-    'image', 
-    'hr', 
-    '|', 
-    'indent', 
-    'outdent', 
-    'alignment', 
-    'fullscreen',
-    'markdown', 
-    'emoji'
+    'title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale',
+    'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link',
+    'image', 'hr', '|', 'indent', 'outdent', 'alignment', 'fullscreen',
+    'markdown', 'emoji'
 ]
 
 SIMDITOR_CONFIGS = {
     'toolbar': SIMDITOR_TOOLBAR,
     'upload': {
-        'url': '/admin/upload/',
+        'url': '/simditor/upload/',
         'fileKey': 'upload'
     },
     'emoji': {
