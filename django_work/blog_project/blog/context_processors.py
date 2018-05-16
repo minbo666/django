@@ -1,10 +1,9 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
 from .models import Category, Article, Tag, BlogSettings
 from django.conf import settings
 from comments.models import Comment
 from zwhk_blog.utils import logger, cache, get_blog_setting
+
+
 
 
 def seo_processor(requests):

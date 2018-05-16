@@ -1,10 +1,7 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-
 import time
 from ipware.ip import get_real_ip
 from zwhk_blog.utils import cache
+
 
 
 class OnlineMiddleware(object):

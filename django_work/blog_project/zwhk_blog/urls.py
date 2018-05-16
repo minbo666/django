@@ -15,15 +15,27 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
+from zwhk_blog.sitemap import StaticViewSitemap, ArticleSiteMap, CategorySiteMap, TagSiteMap, UserSiteMap
 from django.urls import path
 from zwhk_blog.admin_site import admin_site
 from django.conf import settings
 from django.conf.urls.static import static
 from zwhk_blog.feeds import DjangoBlogFeed
 
+sitemaps = {
+    'blog': ArticleSiteMap,
+    'Category': CategorySiteMap,
+    'Tag': TagSiteMap,
+    'User': UserSiteMap,
+    'static': StaticViewSitemap
+}
+
+
 handler404 = 'blog.views.page_not_found_view'
 handler500 = 'blog.views.server_error_view'
 handle403 = 'blog.views.permission_denied_view'
+
 
 urlpatterns = [
     url(r'^admin/', admin_site.urls),
@@ -38,6 +50,9 @@ urlpatterns = [
     url(r'^search', include('haystack.urls'), name='search'),
     #RSS
     url(r'^feed/$', DjangoBlogFeed(), name='feed'),
+    #SiteMap
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},name='django.contrib.sitemaps.views.sitemap'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

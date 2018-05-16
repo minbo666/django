@@ -1,10 +1,9 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-
 from haystack import indexes
 from django.conf import settings
 from blog.models import Article, Category, Tag
+
+
+
 
 
 class ArticleIndex(indexes.SearchIndex, indexes.Indexable):

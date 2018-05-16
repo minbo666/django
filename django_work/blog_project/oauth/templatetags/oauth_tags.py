@@ -1,11 +1,9 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
-
 from oauth.oauthmanager import get_oauth_apps
 from django.urls import reverse
 from django import template
 from django.conf import settings
+
+
 
 register = template.Library()
 

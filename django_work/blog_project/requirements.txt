@@ -1,11 +1,12 @@
 certif==2018.4.16
 chardet==3.0.4
 Django==2.0.5
+django-suit==0.2.26
+django-simditor==0.0.10
 django-appconf==1.0.2
 django-compressor==2.2
 django-haystack==2.8.1
 django-ipware==2.1.0
-django-pagedown==1.0.4
 django-uuslug==1.1.8
 idna==2.6
 jieba==0.39
@@ -21,6 +22,6 @@ requests==2.18.4
 rjsmin==1.0.12
 setuptools==39.1.0
 Unidecode==1.0.22
-urllib==31.22
+urllib3==1.22
 wheel==0.31.0
 Whoosh==2.7.4

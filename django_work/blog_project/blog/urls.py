@@ -29,8 +29,6 @@ urlpatterns = [
     path(r'tag/<slug:tag_name>/<int:page>).html', views.TagDetailView.as_view(), name='tag_detail_page'),
     path('archives.html', views.ArchivesView.as_view(), name='archives'),
 
-    path('parent_archives.html', TemplateView.as_view(template_name='blog/article_archives.html'), name='parent_archives'),
-
     path(r'upload', views.fileupload, name='upload'),
     path(r'refresh', views.refresh_memcache, name='refresh')
 ]

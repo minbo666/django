@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# encoding: utf-8
-
 from django.contrib.syndication.views import Feed
 from blog.models import Article
 from django.conf import settings
@@ -23,7 +20,7 @@ class DjangoBlogFeed(Feed):
         return get_user_model().objects.first().nickname
 
     def author_link(self):
-        return get_user_model().objects.first().get_absolute_url()
+        return self.link + get_user_model().objects.first().get_absolute_url()
 
     def items(self):
         return Article.objects.order_by('-pk')[:5]
@@ -35,11 +32,10 @@ class DjangoBlogFeed(Feed):
         return CommonMarkdown.get_markdown(item.body)
 
     def feed_copyright(self):
-        #print(Site.objects.get_current().name)
         return "Copyright© 2018"
 
     def item_link(self, item):
-        return item.get_absolute_url()
+        return self.link + item.get_absolute_url()
 
     def item_guid(self, item):
         return

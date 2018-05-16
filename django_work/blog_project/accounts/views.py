@@ -1,8 +1,6 @@
 from django.shortcuts import render
-
 from .forms import RegisterForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
-# from django.views.generic.edit import FormView
 from django.views.generic import FormView, RedirectView
 from django.contrib.auth import get_user_model
 from django.http import HttpResponseRedirect
