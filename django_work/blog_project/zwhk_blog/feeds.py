@@ -9,15 +9,15 @@ from zwhk_blog.utils import CommonMarkdown
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
-
+from zwhk_blog.utils import get_blog_setting
 
 class DjangoBlogFeed(Feed):
     feed_type = Rss201rev2Feed
-
-    description = '只为花开的博客'
-    feed_url = 'http://127.0.0.1/feed'
-    title = "且听风吟 大巧无工,重剑无锋. "
-    link = "http://127.0.0.1"
+    setting = get_blog_setting()
+    description = setting.site_description
+    title = setting.sitename
+    feed_url = settings.SITE_URL + '/feed/'
+    link = settings.SITE_URL
 
     def author_name(self):
         return get_user_model().objects.first().nickname
